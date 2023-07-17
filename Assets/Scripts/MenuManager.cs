@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject _level;
+    [SerializeField] private GameObject _input;
 
     public void PlayLevelAll() => _level.SetActive(true);
+    public void PlayInput() => _input.SetActive(true);
     public void PlayLevel2() => SceneManager.LoadScene("GameScene2");
     public void PlayLevel() => SceneManager.LoadScene("GameScene1");
     public void Exit()

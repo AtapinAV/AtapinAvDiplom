@@ -4,6 +4,7 @@ using UnityEngine;
 public class MenuPause : MonoBehaviour
 {
     [SerializeField] private GameObject _pause;
+    [SerializeField] private GameObject _store;
 
     private void Update()
     {
@@ -16,5 +17,7 @@ public class MenuPause : MonoBehaviour
     }
 
     public void PlayPauseOff() => _pause.SetActive(false);
+    public void PlayStore() => _store.SetActive(true);
+    public void PlayStoreOff() => _store.SetActive(false);
     public void PlayMenu() => SceneManager.LoadScene("MenuScene");
 }

@@ -8,7 +8,7 @@ public abstract class UnitsComponent : MonoBehaviour
     protected bool _isRecharged;
 
     [SerializeField] private float _attackCoolDownTime;
-    [SerializeField] protected GameObject _playerUnit;
+    [SerializeField] protected PlayerUnitComponents _playerUnit;
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected int _heal;
     [SerializeField] protected Rigidbody2D _rb;
@@ -20,6 +20,8 @@ public abstract class UnitsComponent : MonoBehaviour
     [SerializeField] protected Transform _attackPos;
     [SerializeField] protected float _attackDis;
     [SerializeField] protected int _attackDamage;
+    [SerializeField] private GameObject _prefabMonet;
+    [SerializeField] private Transform _posMonet;
 
     protected void Awake()
     {
@@ -34,7 +36,11 @@ public abstract class UnitsComponent : MonoBehaviour
     {
         StartCoroutine(EnemyDamage());
         _heal -= damage;
-        if (_heal <= 0) Destroy(gameObject, 0.8f);
+        if (_heal <= 0)
+        {
+            Destroy(gameObject, 0.8f);
+            Instantiate(_prefabMonet, _posMonet.position, Quaternion.identity);
+        }       
     }
 
     protected void Movement(GameObject _leftEndAb, GameObject _rightEndAb)
@@ -66,10 +72,7 @@ public abstract class UnitsComponent : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_attackPos.position, _attackRange, _player);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].TryGetComponent<PlayerController>(out var player))
-            {
-                player.GetDamagePlayers(_attackDamage);
-            } 
+            colliders[i].GetComponent<PlayerController>().GetDamagePlayers(_attackDamage);      
         }
     }
     protected IEnumerator AttackCoolDown()

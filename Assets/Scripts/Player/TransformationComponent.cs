@@ -9,6 +9,7 @@ public class TransformationComponent : MonoBehaviour
     [SerializeField] PlayerDragonController _playerDragon;
     [SerializeField] private float _transformationTime;
     [SerializeField] private float _transformationCoolDownTime;
+    public float TransformationCoolDownTime => _transformationCoolDownTime;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class TransformationComponent : MonoBehaviour
 
     private void Transformation()
     {
-        if (_isTransformation)
+        if (_isTransformation && _player.IsPlayAbilitiesDragon)
         {
             _playerDragon.gameObject.SetActive(true);
             _player.gameObject.SetActive(false);

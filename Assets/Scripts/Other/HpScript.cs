@@ -9,6 +9,6 @@ public class HpScript : MonoBehaviour
     {
         _audioSource.Play();
         _player.Heals += _indexHP;
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 0.2f);
     }
 }

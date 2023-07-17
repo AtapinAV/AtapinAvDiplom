@@ -24,7 +24,7 @@ public class BlastScript : MonoBehaviour
             colliders[i].GetComponent<PlayerController>().GetDamagePlayers(_attackDamage);
         }
 
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject);
     }
     private void MoveFire()
     {     

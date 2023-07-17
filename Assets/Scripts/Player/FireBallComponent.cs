@@ -33,7 +33,7 @@ public class FireBallComponent : MonoBehaviour
             colliders[i].GetComponent<UnitsComponent>().GetDamage(_attackDamage);
         }
 
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject);
     }
 
     private void MoveFire()

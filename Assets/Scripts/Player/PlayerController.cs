@@ -5,6 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : PlayerUnitComponents
 {
+    private bool _isPlayAbilitiesRed;
+    public bool IsPlayAbilitiesRed
+    {
+        get { return _isPlayAbilitiesRed; }
+        set { _isPlayAbilitiesRed = value; }
+    }
+    private bool _isPlayAbilitiesFire;
+    public bool IsPlayAbilitiesFire
+    {
+        get { return _isPlayAbilitiesFire; }
+        set { _isPlayAbilitiesFire = value; }
+    }
+    private bool _isPlayAbilitiesDragon;
+    public bool IsPlayAbilitiesDragon
+    {
+        get { return _isPlayAbilitiesDragon; }
+        set { _isPlayAbilitiesDragon = value; }
+    }
     private bool _isRedRecharged;
     public bool IsRedRecharged
     {
@@ -35,7 +53,9 @@ public class PlayerController : PlayerUnitComponents
     [SerializeField] private float _playerControlOff;
     [SerializeField] private float _attackCoolDownTime;
     [SerializeField] private float _redAttackCoolDownTime;
+    public float RedAttackCoolDownTime => _redAttackCoolDownTime;
     [SerializeField] private float _fireAttackCoolDownTime;
+    public float FireAttackCoolDownTime => _fireAttackCoolDownTime;
     [SerializeField] private float _ultAttackCollDownTime;
     [SerializeField] private TextMeshProUGUI _healPlayerPro;
     [SerializeField] private int _heals;
@@ -61,6 +81,9 @@ public class PlayerController : PlayerUnitComponents
         _isRedRecharged = true;
         _isUltRecharged = true;
         _isFireRecharged = true;
+        _isPlayAbilitiesRed = false;
+        _isPlayAbilitiesFire = false;
+        _isPlayAbilitiesDragon = false;
     }
 
     private void FixedUpdate()
@@ -104,7 +127,7 @@ public class PlayerController : PlayerUnitComponents
 
     private void RedAttack()
     {
-        if (_canJump && _isRedRecharged)
+        if (_canJump && _isRedRecharged && _isPlayAbilitiesRed)
         {
             State = States.redAtk;
             
@@ -134,7 +157,7 @@ public class PlayerController : PlayerUnitComponents
 
     private void FireAttack()
     {
-        if (_isFireRecharged)
+        if (_isFireRecharged && _isPlayAbilitiesFire)
         {
             State = States.skill;
             _fireSound.Play();
