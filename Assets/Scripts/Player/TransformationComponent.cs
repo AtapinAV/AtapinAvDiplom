@@ -47,6 +47,7 @@ public class TransformationComponent : MonoBehaviour
         _player.IsFireRecharged = true;
         _player.IsUltRecharged = true;
         _player.IsPlayerControl = true;
+        _player.IsDamageOnPLayer = true;
     }
 
     private IEnumerator TransformationCoolDown()

@@ -931,6 +931,9 @@ MonoBehaviour:
   _quantityRedMonet: {fileID: 174097796}
   _quantityFireMonet: {fileID: 1452240558}
   _quantityDragonMonet: {fileID: 1155109395}
+  _buttonRed: {fileID: 571052826}
+  _buttonFire: {fileID: 657941960}
+  _buttonDragon: {fileID: 2040240980}
 --- !u!1 &174097794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,7 +2299,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 571052827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 167302456}
+        m_TargetAssemblyTypeName: MenuStore, Assembly-CSharp
+        m_MethodName: QuantityRed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &571052827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2987,7 +3002,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 657941961}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 167302456}
+        m_TargetAssemblyTypeName: MenuStore, Assembly-CSharp
+        m_MethodName: QuantityFire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &657941961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10560,7 +10587,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2040240981}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 167302456}
+        m_TargetAssemblyTypeName: MenuStore, Assembly-CSharp
+        m_MethodName: QuantityDragon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2040240981
 MonoBehaviour:
   m_ObjectHideFlags: 0

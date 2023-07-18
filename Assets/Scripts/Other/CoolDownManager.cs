@@ -33,7 +33,7 @@ public class CoolDownManager : MonoBehaviour
     }
     private void CoolDownRed()
     {
-        if (Input.GetButtonDown("Fire2My")) _isCollDownRed = true;
+        if (Input.GetButtonDown("Fire2My")  && _player.IsPlayAbilitiesRed) _isCollDownRed = true;
         if (_isCollDownRed && float.Parse(_redCoolDown.text) > 0f)
         {
             float a = float.Parse(_redCoolDown.text) - Time.deltaTime;
@@ -47,7 +47,7 @@ public class CoolDownManager : MonoBehaviour
     }
     private void CoolDownFire()
     {
-        if (Input.GetButtonDown("Fire4My")) _isCollDownFire = true;
+        if (Input.GetButtonDown("Fire4My") && _player.IsPlayAbilitiesFire) _isCollDownFire = true;
         if (_isCollDownFire && float.Parse(_fireCoolDown.text) > 0f)
         {
             float a = float.Parse(_fireCoolDown.text) - Time.deltaTime;
@@ -61,7 +61,7 @@ public class CoolDownManager : MonoBehaviour
     }
     private void CoolDownDragon()
     {
-        if (Input.GetButton("TransformationMy")) _isCollDownDragon = true;
+        if (Input.GetButton("TransformationMy") && _player.IsPlayAbilitiesDragon) _isCollDownDragon = true;
         if (_isCollDownDragon && float.Parse(_dragonCoolDown.text) > 0f)
         {
             float a = float.Parse(_dragonCoolDown.text) - Time.deltaTime;

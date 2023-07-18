@@ -47,6 +47,11 @@ public class PlayerController : PlayerUnitComponents
         set { _isFireRecharged = value; }
     }
 
+    private bool _isDamageOnPLayer;
+    public bool IsDamageOnPLayer
+    {
+        set { _isDamageOnPLayer = value; }
+    } 
     [SerializeField] private LayerMask _enemy;
     [SerializeField] private Transform _attackPos;
     [SerializeField] private float _attackRange;
@@ -81,6 +86,7 @@ public class PlayerController : PlayerUnitComponents
         _isRedRecharged = true;
         _isUltRecharged = true;
         _isFireRecharged = true;
+        _isDamageOnPLayer = true;
         _isPlayAbilitiesRed = false;
         _isPlayAbilitiesFire = false;
         _isPlayAbilitiesDragon = false;
@@ -205,10 +211,21 @@ public class PlayerController : PlayerUnitComponents
     }
     public void GetDamagePlayers(int damage)
     {
-        _damageSound.Play();
-        StartCoroutine(EnemyDamage());
-        _heals -= damage;
-        if (_heals <= 0) SceneManager.LoadScene("MenuScene");
+        if (_isDamageOnPLayer)
+        {
+            _damageSound.Play();
+            StartCoroutine(EnemyDamage());
+            _heals -= damage;
+            if (_heals <= 0) SceneManager.LoadScene("MenuScene");
+            _isDamageOnPLayer = false;
+
+            StartCoroutine(DamageOnPlayer2());
+        }
+    }
+    private IEnumerator DamageOnPlayer2()
+    {
+        yield return new WaitForSeconds(2);
+       _isDamageOnPLayer = true;
     }
     private IEnumerator AttackCoolDown()
     {
