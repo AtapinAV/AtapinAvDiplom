@@ -4,6 +4,12 @@ public class SolderEnemiComponent : UnitsComponent
 {
     [SerializeField] private GameObject _leftEnd;
     [SerializeField] private GameObject _rightEnd;
+    [SerializeField] private SpriteRenderer _spriteRendererSword;
+    private SpriteRenderer[] _spriteEnemy;
+    private void Start()
+    {
+        _spriteEnemy = GetComponentsInChildren<SpriteRenderer>();
+    }
     private StatesSoldier StateSoldier
     {
         set { _animator.SetInteger("StateSoldier", (int)value); }
@@ -17,6 +23,7 @@ public class SolderEnemiComponent : UnitsComponent
         StateSoldier = StatesSoldier.walk;
         base.Update();
         Move();
+        FlipDrEnemy();
         AttackSolder();
         if (_heal <= 0) StateSoldier = StatesSoldier.die;
     }
@@ -27,6 +34,26 @@ public class SolderEnemiComponent : UnitsComponent
             StateSoldier = StatesSoldier.atk;
             _isRecharged = false;
             StartCoroutine(AttackCoolDown());
+        }
+    }
+    private void FlipDrEnemy()
+    {
+        if (transform.position.x < _playerUnit.transform.position.x)
+        {
+            foreach (SpriteRenderer render in _spriteEnemy)
+            {
+                render.flipX = true;
+            }
+            _spriteRendererSword.flipY = true;
+            _spriteRendererSword.flipX = false;
+        }
+        if (transform.position.x > _playerUnit.transform.position.x)
+        {
+            foreach (SpriteRenderer render in _spriteEnemy)
+            {
+                render.flipX = false;
+            }
+            _spriteRendererSword.flipY = false;
         }
     }
 }

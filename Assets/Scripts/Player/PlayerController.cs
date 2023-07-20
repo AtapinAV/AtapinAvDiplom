@@ -69,6 +69,9 @@ public class PlayerController : PlayerUnitComponents
     [SerializeField] private AudioSource _damageSound;
     [SerializeField] private int _attackDamageRed;
     [SerializeField] private int _attackDamage;
+    [SerializeField] private Collider2D _playerCollider;
+    [SerializeField] private Collider2D _blockCollider;
+    [SerializeField] private GameObject _block;
     public int Heals
     {
         get { return _heals; }
@@ -105,7 +108,7 @@ public class PlayerController : PlayerUnitComponents
         if (Input.GetButtonDown("Fire2My")) RedAttack();
         if (Input.GetButtonDown("Fire3My")) UltAttack();
         if (Input.GetButtonDown("Fire4My")) FireAttack();
-        if (Input.GetButton("BlockMy")) Block();
+        Block();
         _healPlayerPro.text = _heals.ToString();
     }
     public override void Movement()
@@ -188,9 +191,18 @@ public class PlayerController : PlayerUnitComponents
 
     private void Block()
     {
-        if (_canJump)
+        if (_canJump && Input.GetButton("BlockMy"))
         {
             State = States.block;
+            _blockCollider.enabled = true;
+            _playerCollider.enabled = false;
+            _block.SetActive(true);
+        }
+        else
+        {
+            _blockCollider.enabled = false;
+            _playerCollider.enabled = true;
+            _block.SetActive(false);
         }
     } 
     public void OnAttack()
