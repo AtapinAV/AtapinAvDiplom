@@ -7,7 +7,7 @@ public class MonetScript : MonoBehaviour
     [SerializeField] private int _indexMN;
     [SerializeField] private AudioSource _audioSource;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         _audioSource.Play();
         int a = int.Parse(_monet.text) + _indexMN;
