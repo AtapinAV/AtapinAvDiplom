@@ -6,6 +6,11 @@ public class CoolDownManager : MonoBehaviour
     private bool _isCollDownRed;
     private bool _isCollDownFire;
     private bool _isCollDownDragon;
+    public bool IsCoolDownDragon
+    {
+        get { return _isCollDownDragon; }
+        set { _isCollDownDragon = value; }
+    }
 
     [SerializeField] private TextMeshProUGUI _redCoolDown;
     [SerializeField] private TextMeshProUGUI _fireCoolDown;

@@ -4,6 +4,11 @@ using UnityEngine;
 public class TransformationComponent : MonoBehaviour
 {
     private bool _isTransformation;
+    public bool IsTransformation
+    {
+        get { return _isTransformation; }
+        set { _isTransformation = value; }
+    }
 
     [SerializeField] PlayerController _player;
     [SerializeField] PlayerDragonController _playerDragon;

@@ -97,7 +97,7 @@ public class PlayerController : PlayerUnitComponents
 
     private void FixedUpdate()
     {
-        Thereisland(2.6f);
+        Thereisland(0.1f);
     }
 
     public override void Update()

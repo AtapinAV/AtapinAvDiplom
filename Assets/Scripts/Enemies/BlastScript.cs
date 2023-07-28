@@ -6,10 +6,18 @@ public class BlastScript : MonoBehaviour
     [SerializeField] private float _speedFire;
     [SerializeField] protected int _attackDamage;
 
+    private SpriteRenderer _spriteRendererBlast;
     private Rigidbody2D _rbFire;
+
+    public SpriteRenderer SpriteRendererBlast
+    {
+        get { return _spriteRendererBlast; }
+        set { _spriteRendererBlast = value; }
+    }
 
     private void Awake()
     {
+        _spriteRendererBlast = GetComponentInChildren<SpriteRenderer>();
         _rbFire = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
@@ -27,7 +35,8 @@ public class BlastScript : MonoBehaviour
         Destroy(gameObject);
     }
     private void MoveFire()
-    {     
-        _rbFire.velocity = Vector2.left * _speedFire;
+    {
+        if (_spriteRendererBlast.flipX == false) _rbFire.velocity = Vector2.right * _speedFire;
+        if (_spriteRendererBlast.flipX == true) _rbFire.velocity = Vector2.left * _speedFire;
     }
 }

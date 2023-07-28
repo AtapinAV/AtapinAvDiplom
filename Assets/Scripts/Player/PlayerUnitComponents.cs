@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class PlayerUnitComponents : MonoBehaviour
 {
+    protected bool _isDoubleJump;
     protected bool _canJump;
     protected bool _isPlayerControl;
     public bool IsPlayerControl { set { _isPlayerControl = value; } }
@@ -19,6 +20,7 @@ public abstract class PlayerUnitComponents : MonoBehaviour
     [SerializeField] protected AudioSource _fireSound;
     public virtual void Awake()
     {
+        _isDoubleJump = false;
         _isPlayerControl = true;
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -28,7 +30,7 @@ public abstract class PlayerUnitComponents : MonoBehaviour
     public virtual void Update()
     {
         if (_isPlayerControl && Input.GetButton("HorizontalMy")) Movement();
-        if (_isPlayerControl && _canJump && Input.GetButtonDown("JumpMy")) Jump();
+        if (_isPlayerControl && Input.GetButtonDown("JumpMy")) Jump();
     }
 
     public virtual void Movement()
@@ -41,8 +43,18 @@ public abstract class PlayerUnitComponents : MonoBehaviour
 
     protected void Jump()
     {
-        _rb.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
-        _jumpSound.Play();
+        if (_canJump)
+        {
+            _jumpSound.Play();
+            _rb.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
+            _isDoubleJump = true;
+        }  
+        else if (_isDoubleJump && _rb.velocity.y < 0f)
+        {
+            _jumpSound.Play();
+            _rb.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
+            _isDoubleJump = false;
+        }
     } 
 
     public virtual void Thereisland(float index)
