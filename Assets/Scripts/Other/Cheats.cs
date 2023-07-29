@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Cheats : MonoBehaviour
 {
@@ -24,6 +23,7 @@ public class Cheats : MonoBehaviour
         {
             _transformationDragon.IsTransformation = true;
             _dragonCoolDown.text = _transformationDragon.TransformationCoolDownTime.ToString();
+            _coolDownManager.TimeDragonCoolDown = _transformationDragon.TransformationCoolDownTime;
             _coolDownManager.IsCoolDownDragon = false;
             _player.IsPlayAbilitiesDragon = true;
         }
